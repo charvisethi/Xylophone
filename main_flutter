@@ -1,0 +1,48 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+void main() => runApp(XylophoneApp());
+
+class XylophoneApp extends StatelessWidget {
+  void PlaySound(int a){
+    AudioCache player = AudioCache();
+    player.play('note$a.wav');
+  }
+  Expanded BuildKey({Color color,int a}){
+    return Expanded(
+      child: Container(
+        color: color,
+        child: Center(
+            child: FlatButton(onPressed: (){
+              PlaySound(a);
+            },
+            )
+        ),
+      ),
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.black87,
+        body: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              BuildKey(color: Colors.red, a:1),
+              BuildKey(color: Colors.orange,a:2),
+              BuildKey(color: Colors.yellow,a:3),
+              BuildKey(color: Colors.blue,a:4),
+              BuildKey(color: Colors.green,a:5),
+              BuildKey(color: Colors.teal,a:6),
+              BuildKey(color: Colors.purple,a:7),
+            ],
+          ),
+          ),
+        ),
+        );
+  }
+}
